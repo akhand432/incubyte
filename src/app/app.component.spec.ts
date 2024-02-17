@@ -26,6 +26,22 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('assesement');
   });
 
+  it('should call the addStringNumbers method', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    spyOn(app, 'addStringNumbers');
+    app.addStringNumbers([]);
+    expect(app.addStringNumbers).toHaveBeenCalled();
+  });
+
+  it('should call the addStringNumbers method argument array', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    spyOn(app, 'addStringNumbers');
+    app.addStringNumbers([]);
+    expect(app.addStringNumbers).toHaveBeenCalledWith([]);
+  });
+
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
