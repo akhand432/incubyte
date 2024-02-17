@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addStringNumbers(["", "4", "4,5,9", "5,10"]);
+    this.addStringNumbers(["", "4", "4,5,9", "5,10", "1\n2,3", "1,\n"]);
   }
 
   addStringNumbers(values: Array<string>) {
@@ -29,13 +29,19 @@ export class AppComponent implements OnInit {
           sumNumbers.push(0);
           console.log(value);
         }else {
-          let splittedValue = value.split(',');
+          let splittedValue = value.split(/,|\n/);
           splittedValue.map((value) => {
             if(parseInt(value) < 0) {
               console.log("Negative numbers not allowed");
               return;
+            } else if(isNaN(parseInt(value))) {
+              console.log("Invalid number format");
+              return;
+              // throw new Error('Invalid number');
+            }else {
+              addNumbers += parseInt(value);
             }
-            addNumbers += parseInt(value);
+           
           })
           sumNumbers.push(addNumbers);
         }
