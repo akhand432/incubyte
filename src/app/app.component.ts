@@ -10,23 +10,30 @@ import { __values } from 'tslib';
 export class AppComponent implements OnInit {
   title = 'assesement';
 
-  values: Array<string> = ["", "4", "4", "5"]
+  // values: Array<string> = ["", "4", "4", "5"];
 
   constructor() {
 
   }
 
   ngOnInit(): void {
-    this.addStringNumbers(this.values);
+    this.addStringNumbers(["", "4", "4,5,9", "5,10"]);
   }
 
-  addStringNumbers(numbers: Array<string>) {
-    let sumNumbers = 0;
-    if(Array.isArray(this.values)) {
-      this.values.map((value, index) => {
-        if(value != "" || value != undefined) {
-          sumNumbers += parseInt(value);
+  addStringNumbers(values: Array<string>) {
+    let sumNumbers: any = [], addNumbers = 0;
+    if(Array.isArray(values)) {
+      values.map((value, index) => {
+        addNumbers = 0;
+        if(value == "" && value != undefined) {
+          sumNumbers.push(0);
           console.log(value);
+        }else {
+          let splittedValue = value.split(',');
+          splittedValue.map((value) => {
+            addNumbers += parseInt(value);
+          })
+          sumNumbers.push(addNumbers);
         }
       })
     }else {
