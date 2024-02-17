@@ -31,6 +31,10 @@ export class AppComponent implements OnInit {
         }else {
           let splittedValue = value.split(',');
           splittedValue.map((value) => {
+            if(parseInt(value) < 0) {
+              console.log("Negative numbers not allowed");
+              return;
+            }
             addNumbers += parseInt(value);
           })
           sumNumbers.push(addNumbers);
