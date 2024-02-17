@@ -42,10 +42,17 @@ describe('AppComponent', () => {
     expect(app.addStringNumbers).toHaveBeenCalledWith([]);
   });
 
-  it('should render title', () => {
+  it('should sum numbers from a array of string input', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('assesement app is running!');
+    const app = fixture.componentInstance;
+    const result = app.addStringNumbers(['1,2,3']);
+    expect(result).toBe([6]);
+  });
+
+  it('should sum numbers from a array of string input', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    const result = app.addStringNumbers([]);
+    expect(result).toBe(undefined);
   });
 });
